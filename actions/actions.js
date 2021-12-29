@@ -28,3 +28,16 @@ export const greenBoxClick = squareID => ({
     type: 'GREEN_BOX_CLICK',
     payload: squareID
 });
+
+// triggers when you want run sequence (i.e. on load and on successful round completion)
+export const runSequence = randomSquare => ({
+    type: 'RUN_SEQUENCE',
+    payload: randomSquare,
+
+});
+
+// triggers when you hit the reset button
+export const reset = () => ({
+    type: 'RESET',
+    payload: 'reset',
+})

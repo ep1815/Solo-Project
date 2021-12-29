@@ -31,23 +31,24 @@ Approach:
              v
            Square
 Body contains four squares, one with each associated color and sound.
-3. [CURRENTLY ON] Build out interactivity for these squares. State should be stored in Body; SEQUENCE (the order in which the squares flash) is most important part of state, an array
+3. [FINISHED] Build out interactivity for these squares. SEQUENCE (the order in which the squares flash) is most important part of state, an array
 that is iterated through on each round. Sequence should be empty when game starts, and have a randomizer that pushes a random square's value into the array at the start of each
 round, then iterates through the array and lights up the corresponding square for a certain amount of time (e.g. 1 second) then goes on to the next one. It should know when the 
 iteration is done then promp the player to repeat the sequence.
-4. As the player repeats the sequence, each input should store in state a separate array, PLAYERSEQUENCE, that is pushed each inputted square by the player. Upon each pushed square,
+4. [CURRENTLY WORKING ON] As the player repeats the sequence, each input should store in state a separate array, PLAYERSEQUENCE, that is pushed each inputted square by the player. Upon each pushed square,
 the game should compare the pushed square to the square at the same index in SEQUENCE to ensure that they are identical. If so, it allows the player to continue, and if not,
 it should alert the player that they made a mistake and end the game. After the player successfully completes each round, the PLAYERSEQUENCE array in state should automatically be
 emptied, a new random square pushed to the end of SEQUENCE, and the sequence played out on the front end again.
-5. Upon failure, the player should be prompted to press the RESET button to set state back to empty.
+5. [DONE] Upon failure, the player should be prompted to press the RESET button to set state back to empty.
 6. Prettify the formatting a bit.
 7. Extensions if you can get to it (FIRST PRIORITY: the leaderboard).
 
 WHAT TO DO TOMORROW (WEDNESDAY 29 DEC):
-- Get a better understanding of what the <Provider> does in index.js, along with reducercombiner and store, you rushed through that copy-pasting from the redux unit and you need 
+- [DONE] Get a better understanding of what the <Provider> does in index.js, along with reducercombiner and store, you rushed through that copy-pasting from the redux unit and you need 
 to understand what those are doing before moving forward
-- Build out the boxesReducer, set different SWITCH cases for each squareID possibility - these can be copy-pasted to a large extent once you get the first done; have it push
+- [DONE] Build out the boxesReducer, set different SWITCH cases for each squareID possibility - these can be copy-pasted to a large extent once you get the first done; have it push
 the input squareID to the playerSequence array, and compare the array at index (which should increment by 1 each time a button is clicked) to sequence array at same index, if not
 they should fail, if so they should continue; if index reaches sequence.length, then reset index to zero and reset playerSequence to empty array, then add another 
-- Create a second reducer, sequenceReducer, which pushes a new random squareID to the sequence array (a) when the game starts and (b) when the player successfully enters the entire
+- [CURRENTLY WORKING ON] Create a second reducer, sequenceReducer, which pushes a new random squareID to the sequence array (a) when the game starts and (b) when the player successfully enters the entire
 sequence, and which iterates through the array and triggers the corresponding square to light up for a certain amount of time 
+- [DONE] Create third reducer for reset button, which resets score to zero, playersequence to empty, and sequence to empty
