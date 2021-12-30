@@ -23,8 +23,10 @@ const boxesReducer = (state = initialState, action) => {
             }
             return {
                 ...state,
+                sequence: state.sequence,
                 playerSequence: newPlayerSequence,
                 index: state.index + 1,
+                score: state.score
             }
         }
         case 'BLUE_BOX_CLICK': {
@@ -36,8 +38,10 @@ const boxesReducer = (state = initialState, action) => {
             }
             return {
                 ...state,
+                sequence: state.sequence,
                 playerSequence: newPlayerSequence,
                 index: state.index + 1,
+                score: state.score
             }
         }
         case 'YELLOW_BOX_CLICK': {
@@ -49,8 +53,10 @@ const boxesReducer = (state = initialState, action) => {
             }
             return {
                 ...state,
+                sequence: state.sequence,
                 playerSequence: newPlayerSequence,
                 index: state.index + 1,
+                score: state.score
             }
         }
         case 'GREEN_BOX_CLICK': {
@@ -62,8 +68,10 @@ const boxesReducer = (state = initialState, action) => {
             }
             return {
                 ...state,
+                sequence: state.sequence,
                 playerSequence: newPlayerSequence,
                 index: state.index + 1,
+                score: state.score
             }
         }
         // reducer for sequence; called on load (when first sequence is run)
@@ -71,7 +79,7 @@ const boxesReducer = (state = initialState, action) => {
         case 'RUN_SEQUENCE': {
             newSequence = state.sequence;
             newSequence.push(action.payload);
-            console.log(newSequence);
+            // console.log(newSequence);
             return {
                 ...state,
                 sequence: newSequence,

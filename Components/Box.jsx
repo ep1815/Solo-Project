@@ -1,7 +1,7 @@
 // DESCRIPTION
 // Renders four square components along with two buttons
 
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Square from './Square.jsx';
 import * as actions from '../actions/actions.js';
@@ -17,10 +17,10 @@ const mapStateToProps = state => (
 
 // object that contains the four squareID's, for use with randomizer below
 const squareOptions = {
-    0: "red-box",
-    1: "blue-box",
-    2: "yellow-box",
-    3: "green-box",
+    0: "red",
+    1: "blue",
+    2: "yellow",
+    3: "green",
 }
 
 // randomizer that randomly picks one of the above squareIDs to dispatch upon runSequence
@@ -98,37 +98,45 @@ function oneNegator(score) {
     else return score;
 }
 
+// function that compares the playerSequence array to sequence array
+// if the same, dispatches the runSequence action and runs the loop
+// to be passed down to square to be triggered onClick
+async function compareSequences(sequence, playerSequence) {
+    console.log("this is sequence: ", sequence);
+    console.log("this is playerSequence: ", playerSequence)
+    // if (sequence == playerSequence) {
+        await resolveAfter1Second;
+        return (this.props.runSequence(),
+        sequenceLoop(this.props.sequence));
+    // }
+}
+
 class Box extends Component {
     constructor(props) {
         super(props);
     }
     
     render() {
+        // function nextRound() {
+        //     const button = document.getElementById('startButton');
+        //     useEffect(() => {
+        //         button.current.click();
+        //     })
+    // }
         return (
             <div className='box'>
                 <h2>Your score: {oneNegator(this.props.score)}</h2>
                 {/* clicking below button dispatches random squareID to reducer*/}
-                <button type="button" onClick={() => {this.props.runSequence(); return sequenceLoop(this.props.sequence);}}>Start Game</button>
+                <button id="startButton" type="button" onClick={() => {this.props.runSequence(); return sequenceLoop(this.props.sequence);}}>Start Game</button>
                 <br></br>
-                <Square className='square' color='red-box' boxClick={this.props.redBoxClick} colorChange={colorChange}/>
-                <Square className='square' color='blue-box' boxClick={this.props.blueBoxClick} colorChange={colorChange}/>
-                <Square className='square' color='yellow-box' boxClick={this.props.yellowBoxClick} colorChange={colorChange}/>
-                <Square className='square' color='green-box' boxClick={this.props.greenBoxClick} colorChange={colorChange}/>
+                <Square className='square' color='red' boxClick={this.props.redBoxClick} colorChange={colorChange}/>
+                <Square className='square' color='blue' boxClick={this.props.blueBoxClick} colorChange={colorChange}/>
+                <Square className='square' color='yellow' boxClick={this.props.yellowBoxClick} colorChange={colorChange}/>
+                <Square className='square' color='green' boxClick={this.props.greenBoxClick} colorChange={colorChange}/>
                 <br></br>
                 <button type="button" onClick={() => {this.props.reset()}}>Reset</button>
             </div>
         )
-    }
-    // after component updates, checks to see if player has completed the round
-    // if so, it dispatches runSequence runs the sequenceLoop
-    async componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log("this is prevProps.sequence: ", prevProps.sequence);
-        console.log("this is this.props.playerSequence: ", this.props.playerSequence)
-        if (prevProps.sequence == this.props.playerSequence) {
-            await resolveAfter1Second();
-            this.props.runSequence();
-            sequenceLoop(this.props.sequence);
-        }
     }
 }
 
