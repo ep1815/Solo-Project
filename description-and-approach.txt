@@ -49,6 +49,26 @@ to understand what those are doing before moving forward
 - [DONE] Build out the boxesReducer, set different SWITCH cases for each squareID possibility - these can be copy-pasted to a large extent once you get the first done; have it push
 the input squareID to the playerSequence array, and compare the array at index (which should increment by 1 each time a button is clicked) to sequence array at same index, if not
 they should fail, if so they should continue; if index reaches sequence.length, then reset index to zero and reset playerSequence to empty array, then add another 
-- [CURRENTLY WORKING ON] Create a second reducer, sequenceReducer, which pushes a new random squareID to the sequence array (a) when the game starts and (b) when the player successfully enters the entire
+- [DONE] Create a second reducer, sequenceReducer, which pushes a new random squareID to the sequence array (a) when the game starts and (b) when the player successfully enters the entire
 sequence, and which iterates through the array and triggers the corresponding square to light up for a certain amount of time 
 - [DONE] Create third reducer for reset button, which resets score to zero, playersequence to empty, and sequence to empty
+
+
+PRESENTATION:
+- Introduction: This is my Generic Non-Trademarked Color Matching Memory Game, any resemblance to any existing game is totally coincidental. Styling is pretty barebones,
+which is fine because the main thing I wanted out of this project was to solidify my skills in react-redux, particularly in understanding how to position and render React components
+in the DOM, and that beautiful almighty flow chart of Component -> Action Creator -> Reducer -> Store -> back to Component. In that respect I think I did quite well as I got
+it all to interact with each other the way I wanted. Take a look:
+
+- Demonstration: go through to round 4 or 5, explaining how the game works, on clicking start it shows you a pattern and prompts you to repeat it. Show off the score-keeper
+(stores your score in STORE and increments on each completed round), explain how you keep two arrays in STATE which store a sequence of colors: 
+the PATTERN which is iterated through at the start of each round to show you the pattern to follow, 
+and the PLAYERPATTERN which is empty at the start of each round and is filled up with each click on the squares, and compared to the PATTERN to make sure you're doing it right.
+When the PLAYERPATTERN is fully filled up and completely matches the existing PATTERN, it clears out the PLAYERPATTERN, increments the score, pushes a random new squareID onto the
+end of the PATTERN, and runs through the PATTERN again, starting a new round. 
+When you get it wrong [DEMONSTRATE] it compares the two, sees something is off, and prompts a fail state.
+
+- Technical Challenge: getting the pattern to show up was a pain, I iterate through the PATTERN array that's stored in state, and for each element (representing a squareID)
+take the corresponding id to manipulate its stylings in the DOM to change its background and border colors, then have a setTimeout that changes them back after a certain amount
+of time, then moving on to the next squareID. Same process of DOM manipulation used for changing color onClick. Another problem was getting the pattern to trigger after a round
+is completed
