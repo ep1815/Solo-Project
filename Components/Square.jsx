@@ -76,13 +76,8 @@ class Square extends Component {
     }
     render() {
         return (
-            <div onClick={async () => {
-                console.log("this is this.props.sequence: ", this.props.sequence);
-                console.log("this is this.props.sequence at final index: ", this.props.sequence[this.props.sequence.length - 1]);
-                console.log("this is this.props.playerSequence: ",this.props.playerSequence);
-                console.log("this is this.props.playerSequence at final index: ",this.props.playerSequence[this.props.index]);
+            <div id="reseter-box" onClick={async () => {
                 if (this.props.sequence[this.props.sequence.length - 1] == this.props.playerSequence[this.props.sequence.length - 1]) {
-                    console.log("hello")
                     return (
                     await this.props.runSequence(),
                     await sequenceLoop(this.props.sequence, this.props.color)
@@ -96,7 +91,7 @@ class Square extends Component {
             // onclick dispatches the color prop (red-box, blue-box, etc.)
             // to the boxesReducer
             onClick={async () => {
-                this.props.colorChange(this.props.color); 
+                this.props.colorChange(this.props.color);
                 await this.props.boxClick(this.props.color);
                 await resolveAfter1Second();
             }}

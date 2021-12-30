@@ -124,17 +124,29 @@ class Box extends Component {
         //     })
     // }
         return (
-            <div className='box'>
+            <div id='box'>
                 <h2>Your score: {oneNegator(this.props.score)}</h2>
                 {/* clicking below button dispatches random squareID to reducer*/}
+                <div className="centerButton">
                 <button id="startButton" type="button" onClick={() => {this.props.runSequence(); return sequenceLoop(this.props.sequence);}}>Start Game</button>
+                </div>
                 <br></br>
-                <Square className='square' color='red' boxClick={this.props.redBoxClick} colorChange={colorChange}/>
-                <Square className='square' color='blue' boxClick={this.props.blueBoxClick} colorChange={colorChange}/>
-                <Square className='square' color='yellow' boxClick={this.props.yellowBoxClick} colorChange={colorChange}/>
-                <Square className='square' color='green' boxClick={this.props.greenBoxClick} colorChange={colorChange}/>
+                <table id="squarebox">
+                    <tbody>
+                    <tr>
+                        <th><Square className='square' color='green' boxClick={this.props.greenBoxClick} colorChange={colorChange}/></th>
+                        <th><Square className='square' color='red' boxClick={this.props.redBoxClick} colorChange={colorChange}/></th>
+                    </tr>
+                    <tr>
+                        <th><Square className='square' color='yellow' boxClick={this.props.yellowBoxClick} colorChange={colorChange}/></th>
+                        <th><Square className='square' color='blue' boxClick={this.props.blueBoxClick} colorChange={colorChange}/></th>
+                    </tr>
+                    </tbody>
+                </table>
                 <br></br>
-                <button type="button" onClick={() => {this.props.reset()}}>Reset</button>
+                <div className='centerButton'>
+                <button type="button" id="resetButton" onClick={() => {this.props.reset()}}>Reset</button>
+                </div>
             </div>
         )
     }

@@ -5,6 +5,17 @@
     margin: 25px;
 } */
 
+h1, h2 {
+    text-align: center;
+}
+
+.centerButton {
+    position: absolute;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
 #red {
     background-color: red;
 }
@@ -19,4 +30,17 @@
 
 #yellow {
     background-color: yellow;
+}
+
+#squarebox {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#reseter-box {
+    /* width: 100px;
+    height: 100px; */
+    /* margin: 15px;
+    margin-left: 15px;
+    margin-top: 15px; */
 }
